@@ -1,0 +1,83 @@
+<html>
+<head> 
+<script language="JavaScript">
+
+var partsOfSpeech = ["Please enter a sport", "Please enter a boy's name", "Please enter a breakfast food", "Please enter an animal", "Please enter a car", "Please enter a musical artist", "Please enter a vehicle", "Please enter previous artist", "Please enter artist's best song", "Please enter a drink", "Please enter a number"];
+var answers = new Array(partsOfSpeech.length);
+var story = ["A ", " player named ", " had a big championship game one day and couldn’t be late. When he woke up in the morning he realized he overslept. He quickly ran to the kitchen and ate a quick breakfast: ", ". He ran out the front door and tripped over his pet ", ", injuring his leg. He shook off the injury and got into his ", ". His car broke down when he was on the road, but thankfully, to his right was ", " driving a ", " and told the boy to hop in. The two drove to the big game and arrived with a second to spare. The game went well and the boy won his championship game. To celebrate, ", " sang his/her hit song, ", ", for the entire team in the locker room. To end the great day, the boy went home and drank a nice cup of ", ", but it was wayyyy too hot for him: ", " degrees. The boy went to sleep that night with a championship trophy and a burnt tongue."];
+var count = 0;
+
+function prompt()
+{
+	// if this is the start, display the textbox and hide the story. 
+	// then display the first element of partsOfSpeech in the textbox. 
+
+document.getElementById("userEnter").style.visibility = "visible";
+document.getElementById("story").style.visibility = "hidden";
+document.getElementById("response").value = partsOfSpeech[count];
+}
+
+
+function getWords()
+{
+    var wordBox = document.getElementById("response")
+    answers[count] = wordBox.value;
+    
+    count++;
+    if( count < partsOfSpeech.length ) 
+    {
+    prompt();
+    }
+    else
+    {
+        count = 0;
+        document.getElementById("story").innerHTML = displayStory();
+    }    
+}
+
+function displayStory()
+{
+	var answer = "";
+	var i;
+	
+	// loop to stitch elements of story with elements of answers. 
+	
+	for ( i = 0; i< answers.length; i++)
+	{
+	answer = answer + story[i]
+    answer = answer + answers[i]
+	}
+	answer = answer + story[i];
+    
+    // if there's one more element in story than answers, then add the last element of answers
+
+	// Make the story div visible, and the userEnter div hidden.		
+
+	document.getElementById("story").style.visibility = "visible";
+    document.getElementById("userEnter").style.visibility = "hidden";
+    
+    // return the variable answer.
+   
+    return answer;
+}
+
+</script>
+</head>
+<body>
+<center> 
+<h1>My MadLib!</h1>
+<input id="daButton" type="button" value="start" onClick="prompt()"/>
+</center>
+<div id="userEnter" style="position:absolute; left:200; top: 100; visibility:hidden;">
+<input type = "text" id="response" value="" onfocusout="getWords()"/>
+</div>
+<center/>
+<br/>    
+Click here to <a href="index.html"> return to my homepage.</a> 
+
+<div id="story" style="position:absolute; overflow:scroll; top:300; left:200; width:400; height: 200; visibility:hidden">
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+<div>
+
+</body>
+</html>
