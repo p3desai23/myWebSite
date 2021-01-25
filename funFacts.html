@@ -1,0 +1,111 @@
+<html> 
+<head> 
+<body background="images/herobkgnd.gif">
+<script language="JavaScript">
+
+/*************** Algorithm ******************
+1.First create an array that stores list of examples of topic 
+2.Then create an array that stores a list of funfacts for those topics
+3.then make function(start) and function(getIndex) be connected
+4.then you need a for loop to loop through var group once
+5.you need that loop to aquire what element of group array was selected
+6.you need the same corresponding fact to be displayed
+7.you must write an if-statement testing if an error has occurred
+8.you need "an error has occured" to alert if this is the case and if an error hasn't occured, you need to display the fact.
+
+*/
+
+
+var group = ["-- Choose an Artist --", "Justin Beiber", "Kanye West", "Drake", "Kendrick Lamar", "Frank Ocean", "Kid Cudi", "Post Malone", "Travis Scott"];
+
+var facts = ["-- No Artist selected --", "Justin Beiber is claustrophobic", "Kanye West lived in China for a portion of his childhood", "Drake was an actor on the show Degrassi", "Kendrick Lamar went to the same high school as Dr. Dre", "Frank Ocean wrote Channel Orange in only 2 weeks", "Kid Cudi got expelled from high school for punching principal.", "Post Malone was born on the 4th of July", "Travis Scott's biggest influence was Kid Cudi"];
+
+function loadData()
+{
+	var sum = 0;
+	for(var i = 0; i<group.length; i++)
+    {
+        var daList = document.getElementById("prez");
+  		var option = document.createElement("option");
+  		option.text = group[i];
+  		daList.add(option);
+    }
+}
+
+// This function identifies which element from the drop down has been selected. It calls the 
+// getIndex function to acquire what the index of the selected item. Then it displays the 
+// corresponding element in the facts list. (This is diplayed in the textbox on the web page.)
+function start()
+{
+	// Write code that will store the selection object 
+    //("prez") in a variable called selection.
+    var selection = document.getElementById("prez");
+    
+    //write code that will store index of users selection
+    //in variable called daIndex
+   
+    var daIndex = getIndex(selection.value)
+   
+    document.getElementById("funfact");
+    var funFactBox = document.getElementById("funFact")
+    
+    funFactBox.value = facts[daIndex];
+    
+    //alert(daIndex);
+    //alert(getIndex("c"))
+    if(daIndex <= -1)
+    {
+    alert("an error has occurred");
+    }
+    else
+    {
+    document.getElementById("funFact").value = facts[daIndex];
+    }    
+}
+
+// This function searches the group array for the element passed as a parameter
+// and returns the index number for that element in the array.
+function getIndex(d) // var d = "c";
+{
+    var answer = -1; // invalid index value
+    
+    //write a for loop that traverses the entire group array once
+    for(var i = 0; i< group.length; i++)
+    {
+       //write an if statement that tests if the element at i equals 
+       //the parameter passes in the getIndex function
+       
+       if( group[i] == d ) // d is found at index i
+       {
+           answer = i;
+       }    
+           
+    }
+    
+    
+    return answer;
+}
+
+
+
+</script>
+</head>
+<body onload="loadData()"> 
+<center>
+<h1>Musical Artist Fun Facts</h1>
+Click here to <a href="index.html">return to my homepage.</a>   
+
+<br/><br/>
+<table border = 3>
+	<tr>
+		<td>  	<select name="p1" id="prez"></select>	</td>
+		<td>	<input id="funFact" type="text" size="40"/> </td>
+	</tr>
+</table>
+<br/><br/>
+<input type="button" value="click" onclick="start()"/>
+</center>
+
+
+</body>
+</html>
