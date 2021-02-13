@@ -1,0 +1,120 @@
+<html> 
+<head> 
+<script language="JavaScript">
+
+/*************** Algorithm ******************
+1. Make two arrays
+2. Use if statement to validate if index works
+3. Show the right index
+4. Receive answer from answer box
+5. Check to see if answer corresponds to correct question
+6. Have local variable equal true or false depending on the question
+7. Add one to score and display its correct when its true
+8. Display its incorrect when false
+
+*/
+
+
+
+var questions = ["What QB led the 49ers to 4 Super Bowl victories in the 80s?", "What wide receiver caused a sensation his rookie season with a one-handed catch?", "Who was the first QB to throw 5,000 yards in a season?", "What team scored the most points in a Super Bowl game?", "Who was the first African American coach to win a Super Bowl?", "What team has played in both the NFC and AFC championship game?", "Which player changed his name to match his jersey number?", "What team drafted Brett Favre?", "How many teams are named after birds?", "How many Super Bowls have gone into overtime?", "What team has both won and lost a Super Bowl against Tom Brady?"]; // Create an array of 10ish questions.
+
+var answers = ["Joe Montana", "Odell Beckham Jr.", "Warren Moon", "49ers", "Tony Dungy", "Seahawks", "Chad Johnson", "Falcons", "5", "1", "Eagles"];// Create an array of the cooresponding answers to the questions above.
+
+var index = -1;
+
+var score = 0
+
+
+// Create code in displayQuestion that will display the contents of the questions array, one 
+// element at a time. After the last element is displayed, the program should display the first
+// element again.
+function displayQuestion()
+{
+	index = index + 1;
+	
+    if( index > questions.length - 1 )
+	
+    {
+        index = 0;
+    }
+    var answer = document.getElementById("question");
+    answer.value = questions[index];
+
+}
+
+
+// This function will first acquire the user's answer (from the textbox with the ID "answer". 
+//Then this function will pass that to the checkAnswer function (note: that there is a parameter.) 
+//The checkAnswer will return a true or a false. If that function returns true, then the score variable will increase by 1, and an alert should pop up saying "Correct" or something positive. 
+//If the checkAnswer function comes back false, then score doesn't increase but an alert should announce "incorect." or something similar. 
+function updateScore()
+{
+	var answerT = document.getElementById("answer");
+    var daAnswer = checkAnswer(answerT.value);
+	
+    if ( daAnswer == true )
+    {
+        score = score + 1;
+        alert("Correct!");
+    }
+    else if ( daAnswer == false )
+    {
+        alert("Incorrect, the correct answer is " +answers[index]); 
+    }
+
+}
+
+// This function takes a parameter which will be the users answer. If what the user has submitted the correct answer, this method should return true. Otherwise it should return false. 
+function checkAnswer(ans)
+{
+	var answer = -1;
+	if( ans == answers[index] )
+	
+   {
+       answer = true;
+   }
+   else
+   {
+       answer = false;
+   }  
+    return answer;
+}
+
+
+
+</script>
+</head>
+<body > 
+<body bgcolor="teal" link="blue" vlink = "blue"> 
+<font color="white">    
+<center>
+<h1>My Quiz</h1>
+<p>
+    1. To receive a question, press the button down below.
+    <br/>
+    2. Type your answer and click the button to submit. 
+    <br/>
+    3. Reclick the button to receive a new question.
+    <br/>
+</p>    
+
+Click <a href="index.html">here</a> return to my homepage.
+
+<br/><br/>
+<table border = 3>
+	<tr>
+		<td>  	<input id="question" type="text" size="70" readonly = true/>	</td>
+	</tr>
+	<tr height = "12"><td></td>
+	</tr>
+	<tr>
+		<td>	<input id="answer" type="text" size="70" onfocusout="updateScore()"/> </td>
+	</tr>
+</table>
+<br/><br/>
+<input type="button" value="Next Question" onclick="displayQuestion()"/>
+</center>
+
+
+</body>
+</html>
